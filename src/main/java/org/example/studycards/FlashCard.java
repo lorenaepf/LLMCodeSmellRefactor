@@ -1,6 +1,5 @@
-package org.example.cardstudy;
+package org.example.studycards;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 

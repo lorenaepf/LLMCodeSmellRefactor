@@ -1,4 +1,4 @@
-package org.example.cardstudy;
+package org.example.studycards;
 
 public class Card {
     private String question;

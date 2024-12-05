@@ -1,4 +1,4 @@
-package org.example.cardstudy;
+package org.example.studycards;
 
 import java.util.*;
 

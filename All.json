@@ -1,10 +1,10 @@
 {
   "formatVersion": 0,
   "pmdVersion": "7.0.0",
-  "timestamp": "2024-12-04T16:01:13.743-03:00",
+  "timestamp": "2024-12-05T15:39:23.745-03:00",
   "files": [
     {
-      "filename": ".\\src\\main\\java\\org\\example\\cardstudy\\Card.java",
+      "filename": ".\\src\\main\\java\\org\\example\\studycards\\Card.java",
       "violations": [
         {
           "beginline": 3,
@@ -12,6 +12,102 @@
           "endline": 3,
           "endcolumn": 13,
           "description": "The class \u0027Card\u0027 is suspected to be a Data Class (WOC\u003d20.000%, NOPA\u003d0, NOAM\u003d4, WMC\u003d6)",
+          "rule": "DataClass",
+          "ruleset": "Design",
+          "priority": 3,
+          "externalInfoUrl": "https://docs.pmd-code.org/pmd-doc-7.0.0/pmd_rules_java_design.html#dataclass"
+        }
+      ]
+    },
+    {
+      "filename": ".\\src\\main\\java\\org\\example\\studymaterial\\Reference.java",
+      "violations": [
+        {
+          "beginline": 3,
+          "begincolumn": 17,
+          "endline": 3,
+          "endcolumn": 22,
+          "description": "The class \u0027Reference\u0027 is suspected to be a Data Class (WOC\u003d0.000%, NOPA\u003d0, NOAM\u003d6, WMC\u003d6)",
+          "rule": "DataClass",
+          "ruleset": "Design",
+          "priority": 3,
+          "externalInfoUrl": "https://docs.pmd-code.org/pmd-doc-7.0.0/pmd_rules_java_design.html#dataclass"
+        }
+      ]
+    },
+    {
+      "filename": ".\\src\\main\\java\\org\\example\\studyplanner\\HabitTracker.java",
+      "violations": [
+        {
+          "beginline": 25,
+          "begincolumn": 25,
+          "endline": 25,
+          "endcolumn": 229,
+          "description": "Avoid long parameter lists.",
+          "rule": "ExcessiveParameterList",
+          "ruleset": "Design",
+          "priority": 3,
+          "externalInfoUrl": "https://docs.pmd-code.org/pmd-doc-7.0.0/pmd_rules_java_design.html#excessiveparameterlist"
+        }
+      ]
+    },
+    {
+      "filename": ".\\src\\main\\java\\org\\example\\studyplanner\\KanbanView.java",
+      "violations": [
+        {
+          "beginline": 35,
+          "begincolumn": 19,
+          "endline": 35,
+          "endcolumn": 23,
+          "description": "The method \u0027view()\u0027 has a NCSS line count of 29.",
+          "rule": "NcssCount",
+          "ruleset": "Design",
+          "priority": 3,
+          "externalInfoUrl": "https://docs.pmd-code.org/pmd-doc-7.0.0/pmd_rules_java_design.html#ncsscount"
+        }
+      ]
+    },
+    {
+      "filename": ".\\src\\main\\java\\org\\example\\studyplanner\\ToDo.java",
+      "violations": [
+        {
+          "beginline": 3,
+          "begincolumn": 8,
+          "endline": 3,
+          "endcolumn": 13,
+          "description": "The class \u0027ToDo\u0027 is suspected to be a Data Class (WOC\u003d0.000%, NOPA\u003d0, NOAM\u003d7, WMC\u003d8)",
+          "rule": "DataClass",
+          "ruleset": "Design",
+          "priority": 3,
+          "externalInfoUrl": "https://docs.pmd-code.org/pmd-doc-7.0.0/pmd_rules_java_design.html#dataclass"
+        }
+      ]
+    },
+    {
+      "filename": ".\\src\\main\\java\\org\\example\\studyregistry\\Task.java",
+      "violations": [
+        {
+          "beginline": 3,
+          "begincolumn": 8,
+          "endline": 3,
+          "endcolumn": 13,
+          "description": "The class \u0027Task\u0027 is suspected to be a Data Class (WOC\u003d0.000%, NOPA\u003d0, NOAM\u003d8, WMC\u003d9)",
+          "rule": "DataClass",
+          "ruleset": "Design",
+          "priority": 3,
+          "externalInfoUrl": "https://docs.pmd-code.org/pmd-doc-7.0.0/pmd_rules_java_design.html#dataclass"
+        }
+      ]
+    },
+    {
+      "filename": ".\\src\\main\\java\\org\\example\\studysearch\\SearchLog.java",
+      "violations": [
+        {
+          "beginline": 8,
+          "begincolumn": 8,
+          "endline": 8,
+          "endcolumn": 13,
+          "description": "The class \u0027SearchLog\u0027 is suspected to be a Data Class (WOC\u003d20.000%, NOPA\u003d0, NOAM\u003d4, WMC\u003d6)",
           "rule": "DataClass",
           "ruleset": "Design",
           "priority": 3,
