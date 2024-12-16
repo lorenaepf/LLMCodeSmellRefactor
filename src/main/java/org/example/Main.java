@@ -3,8 +3,6 @@ package org.example;
 import org.example.controllers.MainController;
 import org.example.controllers.StudyCardsController;
 import org.example.controllers.StudyPlannerController;
-import org.example.studycards.FlashCard;
-import org.example.studycards.LeitnerSystem;
 
 import java.util.Scanner;
 

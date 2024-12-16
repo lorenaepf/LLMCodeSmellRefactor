@@ -1,6 +1,8 @@
 package org.example.studycards;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Box {
     private List<Integer> cards;

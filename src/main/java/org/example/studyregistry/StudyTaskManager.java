@@ -1,6 +1,8 @@
 package org.example.studyregistry;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StudyTaskManager {
     private static StudyTaskManager instance;

@@ -1,7 +1,5 @@
 package org.example.studyregistry;
 
-import org.example.studymaterial.Reference;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
