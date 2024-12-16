@@ -89,6 +89,7 @@ class GeneralSearchTest {
         assertTrue(verifySearchResponse("Card2 T", response));
         assertEquals((int) searchLog.getNumUsages(), previousNumUsages + 1);
         assertTrue(searchLog.getSearchHistory().contains("TestCard"));
+        assertTrue(verifySearchResponse(searchLog.getLogName(), response));
     }
 
     @Test
@@ -103,6 +104,7 @@ class GeneralSearchTest {
         assertTrue(verifySearchResponse("GeneralSearchTestHabit2 Test", response));
         assertEquals((int) searchLog.getNumUsages(), previousNumUsages + 1);
         assertTrue(searchLog.getSearchHistory().contains("SearchTestHabit"));
+        assertTrue(verifySearchResponse(searchLog.getLogName(), response));
     }
 
     @Test
@@ -117,6 +119,7 @@ class GeneralSearchTest {
         assertTrue(verifySearchResponse("GeneralSearchTestToDo2 Test", response));
         assertEquals((int) searchLog.getNumUsages(), previousNumUsages + 1);
         assertTrue(searchLog.getSearchHistory().contains("SearchTestToDo"));
+        assertTrue(verifySearchResponse(searchLog.getLogName(), response));
     }
 
 
@@ -133,6 +136,7 @@ class GeneralSearchTest {
         assertFalse(verifySearchResponse("GeneralSearchTestAudio3 Test", response));
         assertEquals((int) searchLog.getNumUsages(), previousNumUsages + 1);
         assertTrue(searchLog.getSearchHistory().contains("SearchTestAudio"));
+        assertTrue(verifySearchResponse(searchLog.getLogName(), response));
     }
 
     @Test
@@ -147,10 +151,11 @@ class GeneralSearchTest {
         assertFalse(verifySearchResponse("GeneralSearchTestVideo2 Test", response));
         assertEquals((int) searchLog.getNumUsages(), previousNumUsages + 1);
         assertTrue(searchLog.getSearchHistory().contains("SearchTestVideo"));
+        assertTrue(verifySearchResponse(searchLog.getLogName(), response));
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     @DisplayName("General Search Text Reference Test")
     void generalSearchTextReferenceTest() {
         addTextReference();
@@ -160,5 +165,6 @@ class GeneralSearchTest {
         assertTrue(verifySearchResponse("GeneralSearchTestText Test", response));
         assertEquals((int) searchLog.getNumUsages(), previousNumUsages + 1);
         assertTrue(searchLog.getSearchHistory().contains("SearchTestText"));
+        assertTrue(verifySearchResponse(searchLog.getLogName(), response));
     }
 }

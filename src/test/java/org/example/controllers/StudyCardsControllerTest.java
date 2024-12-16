@@ -1,56 +1,59 @@
 package org.example.controllers;
 
 import org.example.studycards.CardManager;
+import org.example.studycards.LeitnerSystem;
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 
-import java.io.*;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudyCardsControllerTest {
-    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    private CardManager manager = CardManager.getCardManager();
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    static private CardManager cardManager = CardManager.getCardManager();
+    static private LeitnerSystem leitnerSystem = new LeitnerSystem("Test LeitnerSystem");
+    static private StudyCardsController studyCardsController = new StudyCardsController(leitnerSystem);
+    static private List<Integer> cardIds = new ArrayList<>();
 
-    @BeforeEach
-    public void setUp() throws UnsupportedEncodingException {
-        PrintStream streamFlux = new PrintStream(output, true, "UTF-8");
-        System.setOut(new PrintStream(outputStreamCaptor));
-        System.setOut(streamFlux);
+    @BeforeAll
+    static public void setUp(){
+        addCards();
+        addCardsToLeitnerBox();
+
     }
 
-    @AfterEach
-    public void cleanUp()  {
-        output.reset();
+    static void addCards(){
+        cardIds.add(cardManager.addCard("Test Random Leitner Question 1", "Test Random Leitner Answer 1"));
+        cardIds.add(cardManager.addCard("Test Random Leitner Question 2", "Test Random Leitner Answer 2"));
     }
 
-    @Test
-    @DisplayName("Get Controller Options")
-    @Order(1)
-    public void verifyControllerOptions() {
-        StudyCardsController.controllerOptions();
-
-        assertTrue(output.toString().contains("return"));
-        assertTrue(output.toString().contains("view cards"));
-        assertTrue(output.toString().contains("create card"));
-        assertTrue(output.toString().contains("delete card"));
-        assertTrue(output.toString().contains("(FlashCard) Get random card"));
-        assertTrue(output.toString().contains("(Leitner) Insert card in box"));
-        assertTrue(output.toString().contains("(Leitner) Remove card from box"));
-        assertTrue(output.toString().contains("(Leitner) Upgrade card from box"));
-        assertTrue(output.toString().contains("(Leitner) Downgrade card from box"));
+    static void addCardsToLeitnerBox(){
+        for (Integer cardId : cardIds){
+            if(cardId % 2 == 0){
+                leitnerSystem.addCardToBox(cardId, 1);
+            } else {
+                leitnerSystem.addCardToBox(cardId, 4);
+            }
+        }
     }
 
     @Test
-    @DisplayName("Testing output of system out")
     @Order(1)
-    public void systemOutTest() {
+    @DisplayName("Get Random Card From Box Test")
+    void getRandomCardFromBox() {
+        String response = studyCardsController.getRandomCardFromBox();
+        if(response == null){
+            fail();
+        }
+        assertTrue(response.contains("Test LeitnerSystem"));
+        if(response.contains("Test Random Leitner Question 1")){
+            assertTrue(response.contains("Test Random Leitner Answer 1"));
+        } else {
+            assertTrue(response.contains("Test Random Leitner Answer 2"));
+        }
+
     }
 
 

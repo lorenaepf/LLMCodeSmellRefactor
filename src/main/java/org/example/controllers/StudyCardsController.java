@@ -14,6 +14,15 @@ public class StudyCardsController {
     private Map<String, Runnable> actions = new HashMap<>();
 
     public StudyCardsController() {
+        assignActions();
+    }
+
+    public StudyCardsController(LeitnerSystem leitnerSystem) {
+        assignActions();
+        this.leitnerSystem = leitnerSystem;
+    }
+
+    void assignActions(){
         actions.put("1", this::handleViewCards);
         actions.put("2", this::handleCreateCard);
         actions.put("3", this::handleRemoveCard);
@@ -101,12 +110,17 @@ public class StudyCardsController {
         }
     }
 
+    public String getRandomCardFromBox() {
+        String response = "";
+        response += leitnerSystem.getMethodName();
+        List<Box> boxes = leitnerSystem.getBoxes();
+        response += leitnerSystem.getRandomCard(boxes);
+        return response;
+    }
+
     public void handleGetRandomCardFromBox() {
         try{
-            String response = "";
-            response += leitnerSystem.getMethodName();
-            List<Box> boxes = leitnerSystem.getBoxes();
-            response += leitnerSystem.getRandomCard(boxes);
+            String response = getRandomCardFromBox();
             System.out.println(response);
         }catch (Exception e){
             System.out.println(e.getMessage());
