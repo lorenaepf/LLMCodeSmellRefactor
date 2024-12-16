@@ -3,7 +3,7 @@ package org.example.studyplanner;
 import java.text.MessageFormat;
 import java.time.*;
 
-public class Habit {
+public class Habit implements PlannerMaterial{
     private Integer id;
     private Boolean isConcluded;
     private String name;
@@ -18,6 +18,13 @@ public class Habit {
         this.motivation = motivation;
         this.dailyDedicationTime = dailyDedicationTime;
         this.startDate = startDate;
+    }
+
+    Habit(String name, String motivation, Integer id){
+        this.isConcluded = false;
+        this.id = id;
+        this.name = name;
+        this.motivation = motivation;
     }
 
     @Override

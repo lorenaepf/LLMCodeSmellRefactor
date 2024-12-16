@@ -6,9 +6,4 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
 
-    @Test
-    void main() {
-        String nome = "John Doe";
-        assertEquals("John Doe", nome);
-    }
 }

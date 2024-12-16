@@ -1,12 +1,14 @@
 package org.example.studyregistry;
 
-public class Task {
+import java.time.LocalDateTime;
+
+public class Task extends Registry{
     private String title;
     private String description;
     private String author;
-    private String date;
+    private LocalDateTime date;
 
-    public Task(String title, String description, String author, String date) {
+    public Task(String title, String description, String author, LocalDateTime date) {
         this.title = title;
         this.description = description;
         this.author = author;
@@ -30,10 +32,10 @@ public class Task {
     public void setAuthor(String author) {
         this.author = author;
     }
-    public String getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 }

@@ -7,6 +7,6 @@ public abstract class StudyMethod {
         this.methodName = methodName;
         this.cardManager = CardManager.getCardManager();
     }
-    abstract String getMethodName();
+    public abstract String getMethodName();
     abstract void setMethodName(String methodName);
 }

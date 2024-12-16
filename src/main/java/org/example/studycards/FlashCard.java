@@ -9,7 +9,7 @@ public class FlashCard extends StudyMethod{
     }
 
     @Override
-    String getMethodName() {
+    public String getMethodName() {
         return "";
     }
 
@@ -18,15 +18,15 @@ public class FlashCard extends StudyMethod{
 
     }
 
-    public Card randomFlashCard(){
+    public int randomFlashCard(){
         List<Card> cards = cardManager.getCards();
         if (cards.isEmpty()) {
             System.out.println("No cards found");
-            return null;
+            return -1;
         }
 
         Random random = new Random();
-        int randomIndex = random.nextInt(cards.size());
-        return cards.get(randomIndex);
+
+        return random.nextInt(cards.size() - 1 + 1) + 1;
     }
 }

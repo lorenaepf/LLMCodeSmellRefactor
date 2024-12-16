@@ -1,28 +1,39 @@
 package org.example.studyplanner;
 
-public class ToDo {
-    private int id;
+import java.text.MessageFormat;
+
+public class ToDo implements PlannerMaterial{
+    private Integer id;
     private String title;
     private String description;
     private int priority;
 
-    public ToDo(int id, String title, String description, int priority) {
+    public ToDo(Integer id, String title, String description, int priority) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.priority = priority;
     }
 
+    @Override
+    public String toString() {
+        return MessageFormat.format("[(Priority:{3}) Habit {0}: {1}, {2}]", id, title, description, priority);
+    }
+
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {

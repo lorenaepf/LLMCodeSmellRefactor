@@ -1,18 +1,28 @@
 package org.example.studyplanner;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-// long parameter list
 public class HabitTracker {
-    private List<Habit> habits = new ArrayList<>();
+    private List<Habit> habits;
     private Map<Integer, List<LocalDateTime>> tracker;
     private Integer nextId;
 
-    public HabitTracker() {
-        this.tracker = new HashMap<Integer, List<LocalDateTime>>();
-        this.habits = new ArrayList<Habit>();
+    private static HabitTracker instance;
+
+    public static HabitTracker getHabitTracker() {
+        if (instance == null) {
+            instance = new HabitTracker();
+        }
+        return instance;
+    }
+
+    private HabitTracker(){
+        this.habits = new ArrayList<>();
+        this.tracker = new HashMap<>();
         this.nextId = 1;
     }
 
@@ -22,6 +32,20 @@ public class HabitTracker {
                 .findFirst().orElse(null);
     }
 
+    public List<Habit> getHabits() {
+        return this.habits;
+    }
+
+    public String formatHabitDate(LocalDateTime date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+        return date.format(formatter);
+    }
+
+    public List<Integer> getTrackerKeys(){
+        return this.tracker.keySet().stream().toList();
+    }
+
     public void addHabit(String name, String motivation, Integer dailyMinutesDedication, Integer dailyHoursDedication, Integer year, Integer month, Integer day, Integer hour, Integer minute, Integer seconds, Boolean isConcluded) {
         LocalTime lt = LocalTime.of(dailyHoursDedication, dailyMinutesDedication);
         LocalDateTime startDate = LocalDateTime.of(year, month, day, hour, minute, seconds);
@@ -29,6 +53,20 @@ public class HabitTracker {
         this.habits.add(habit);
         this.tracker.put(nextId, new ArrayList<>());
         this.nextId++;
+    }
+
+    public int addHabit(String name, String motivation) {
+
+        Habit habit = new Habit(name, motivation, this.nextId);
+        this.habits.add(habit);
+        int response = nextId;
+        this.tracker.put(nextId, new ArrayList<>());
+        this.nextId++;
+        return response;
+    }
+
+    public void addHabitRecord(Integer id){
+        tracker.get(id).add(LocalDateTime.now());
     }
 
     public void toggleConcludeHabit(Integer id) {
@@ -43,4 +81,19 @@ public class HabitTracker {
         this.habits.removeIf(habit -> habit.getId().equals(id));
         this.tracker.remove(id);
     }
+
+    public List<LocalDateTime> getHabitRecords(Integer id) {
+        return this.tracker.get(id);
+    }
+
+    public List<String> searchInHabits(String search){
+        List<String> habits = new ArrayList<>();
+        for (Habit habit : this.habits) {
+            if (habit.getName().toLowerCase().contains(search.toLowerCase()) || habit.getMotivation().toLowerCase().contains(search.toLowerCase())) {
+                habits.add(habit.toString());
+            }
+        }
+        return habits;
+    }
+
 }

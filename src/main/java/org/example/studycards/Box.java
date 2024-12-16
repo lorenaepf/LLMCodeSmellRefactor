@@ -4,15 +4,28 @@ import java.util.*;
 
 public class Box {
     private List<Integer> cards;
-    public Box() {}
+    public Box() {
+        cards = new ArrayList<>();
+    }
     public Box(List<Integer> cards) {
         this.cards = cards;
     }
+    @Override
+    public String toString() {
+        CardManager manager = CardManager.getCardManager();
+        StringBuilder response = new StringBuilder();
+        for (Integer card : cards) {
+            response.append(manager.formatCard(card)).append(System.lineSeparator());
+        }
+        return response.toString();
+    }
+
     public List<Integer> getCards() {
         return cards;
     }
+
     public boolean hasCard(int cardId) {
-        return cards.contains(cardId);
+        return !cards.contains(cardId);
     }
 
     public void setCards(List<Integer> cards) {
@@ -25,8 +38,15 @@ public class Box {
         cards.add(id);
     }
 
+    public void addCards (List<Integer> cards) {
+        this.cards.addAll(cards);
+    }
+
     public Integer getRandomCard(){
         Random random = new Random();
+        if (cards.isEmpty()) {
+            return null;
+        }
         int randomIndex = random.nextInt(cards.size());
         return cards.get(randomIndex);
     }
