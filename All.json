@@ -1,7 +1,7 @@
 {
   "formatVersion": 0,
   "pmdVersion": "7.0.0",
-  "timestamp": "2024-12-15T23:11:27.554-03:00",
+  "timestamp": "2024-12-16T20:42:49.456-03:00",
   "files": [
     {
       "filename": ".\\src\\main\\java\\org\\example\\studycards\\Card.java",
@@ -39,10 +39,10 @@
       "filename": ".\\src\\main\\java\\org\\example\\studymaterial\\AudioReference.java",
       "violations": [
         {
-          "beginline": 21,
-          "begincolumn": 27,
-          "endline": 21,
-          "endcolumn": 244,
+          "beginline": 23,
+          "begincolumn": 28,
+          "endline": 23,
+          "endcolumn": 224,
           "description": "Avoid long parameter lists.",
           "rule": "ExcessiveParameterList",
           "ruleset": "Design",
@@ -59,7 +59,7 @@
           "begincolumn": 17,
           "endline": 3,
           "endcolumn": 22,
-          "description": "The class \u0027Reference\u0027 is suspected to be a Data Class (WOC\u003d9.091%, NOPA\u003d0, NOAM\u003d20, WMC\u003d22)",
+          "description": "The class \u0027Reference\u0027 is suspected to be a Data Class (WOC\u003d4.545%, NOPA\u003d0, NOAM\u003d21, WMC\u003d22)",
           "rule": "DataClass",
           "ruleset": "Design",
           "priority": 3,
@@ -71,10 +71,10 @@
       "filename": ".\\src\\main\\java\\org\\example\\studyplanner\\HabitTracker.java",
       "violations": [
         {
-          "beginline": 49,
-          "begincolumn": 25,
-          "endline": 49,
-          "endcolumn": 229,
+          "beginline": 48,
+          "begincolumn": 24,
+          "endline": 48,
+          "endcolumn": 228,
           "description": "Avoid long parameter lists.",
           "rule": "ExcessiveParameterList",
           "ruleset": "Design",
@@ -119,9 +119,9 @@
       "filename": ".\\src\\main\\java\\org\\example\\studyplanner\\TodoTracker.java",
       "violations": [
         {
-          "beginline": 30,
+          "beginline": 29,
           "begincolumn": 19,
-          "endline": 30,
+          "endline": 29,
           "endcolumn": 27,
           "description": "The method \u0027toString()\u0027 has a NCSS line count of 21.",
           "rule": "NcssCount",
@@ -135,9 +135,9 @@
       "filename": ".\\src\\main\\java\\org\\example\\studyregistry\\StudyGoal.java",
       "violations": [
         {
-          "beginline": 28,
+          "beginline": 29,
           "begincolumn": 19,
-          "endline": 28,
+          "endline": 29,
           "endcolumn": 33,
           "description": "The method \u0027setGoalSummary()\u0027 has a NCSS line count of 19.",
           "rule": "NcssCount",
@@ -155,7 +155,7 @@
           "begincolumn": 33,
           "endline": 61,
           "endcolumn": 53,
-          "description": "The method \u0027getReferenceCountMap()\u0027 has a NCSS line count of 20.",
+          "description": "The method \u0027getReferenceCountMap()\u0027 has a NCSS line count of 21.",
           "rule": "NcssCount",
           "ruleset": "Design",
           "priority": 3,
@@ -167,9 +167,9 @@
       "filename": ".\\src\\main\\java\\org\\example\\studyregistry\\StudyObjective.java",
       "violations": [
         {
-          "beginline": 53,
+          "beginline": 85,
           "begincolumn": 35,
-          "endline": 53,
+          "endline": 85,
           "endcolumn": 293,
           "description": "Avoid long parameter lists.",
           "rule": "ExcessiveParameterList",
@@ -183,10 +183,10 @@
       "filename": ".\\src\\main\\java\\org\\example\\studyregistry\\StudyPlan.java",
       "violations": [
         {
-          "beginline": 38,
+          "beginline": 36,
           "begincolumn": 28,
           "endline": 38,
-          "endcolumn": 322,
+          "endcolumn": 137,
           "description": "Avoid long parameter lists.",
           "rule": "ExcessiveParameterList",
           "ruleset": "Design",
@@ -199,10 +199,10 @@
       "filename": ".\\src\\main\\java\\org\\example\\studyregistry\\StudyTaskManager.java",
       "violations": [
         {
-          "beginline": 22,
+          "beginline": 30,
           "begincolumn": 26,
-          "endline": 22,
-          "endcolumn": 265,
+          "endline": 32,
+          "endcolumn": 88,
           "description": "Avoid long parameter lists.",
           "rule": "ExcessiveParameterList",
           "ruleset": "Design",

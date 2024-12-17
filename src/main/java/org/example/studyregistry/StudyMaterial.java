@@ -43,8 +43,8 @@ public class StudyMaterial{
         return response;
     }
 
-    public Integer getReferencesCount(){
-        return references.size();
+    public void setReferenceCount(Map<String, Integer> referenceCount) {
+        this.referenceCount = referenceCount;
     }
 
     public List<String> searchInMaterials(String text){
@@ -79,6 +79,7 @@ public class StudyMaterial{
                 }
             }
         }
+        setReferenceCount(response);
         return response;
     }
 

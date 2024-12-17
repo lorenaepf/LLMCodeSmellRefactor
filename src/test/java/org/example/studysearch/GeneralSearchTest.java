@@ -6,9 +6,10 @@ import org.example.studymaterial.TextReference;
 import org.example.studymaterial.VideoReference;
 import org.example.studyplanner.HabitTracker;
 import org.example.studyplanner.TodoTracker;
-import org.example.studyregistry.StudyMaterial;
+import org.example.studyregistry.*;
 import org.junit.jupiter.api.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +22,24 @@ class GeneralSearchTest {
     static TodoTracker todoTracker = TodoTracker.getInstance();
     static StudyMaterial studyMaterial = StudyMaterial.getStudyMaterial();
     static GeneralSearch generalSearch = new GeneralSearch();
+    static StudyTaskManager studyTaskManager = StudyTaskManager.getStudyTaskManager();
 
     @BeforeAll
     static void setUp() {
+        Task task = new Task("GeneralSearchTestTask Test", "Test", "Author Test", LocalDateTime.now());
+        studyTaskManager.addRegistry(task);
+        StudyObjective studyObjective = new StudyObjective("GeneralSearchStudyObjective Test",
+                "Objective Description Search Test");
+        StudyPlan studyPlan = new StudyPlan("GeneralSearchStudyPlan Test", studyObjective, new ArrayList<>());
+        StudyGoal studyGoal = new StudyGoal("GeneralSearchStudyGoal Test", studyObjective, studyPlan);
+        addRegistries(task, studyObjective, studyPlan, studyGoal);
 
+    }
+    static void addRegistries(Task task, StudyObjective studyObjective, StudyPlan studyPlan, StudyGoal studyGoal){
+        studyTaskManager.addRegistry(task);
+        studyTaskManager.addRegistry(studyObjective);
+        studyTaskManager.addRegistry(studyPlan);
+        studyTaskManager.addRegistry(studyGoal);
     }
 
     static void addCards(){
@@ -167,4 +182,58 @@ class GeneralSearchTest {
         assertTrue(searchLog.getSearchHistory().contains("SearchTestText"));
         assertTrue(verifySearchResponse(searchLog.getLogName(), response));
     }
+
+    @Test
+    @Order(7)
+    @DisplayName("General Search Task Test")
+    void generalSearchTaskTest() {
+        SearchLog searchLog = generalSearch.getSearchLog();
+        int previousNumUsages = searchLog.getNumUsages();
+        List<String> response = generalSearch.search("SearchTestTask");
+        assertTrue(verifySearchResponse("GeneralSearchTestTask Test", response));
+        assertEquals((int) searchLog.getNumUsages(), previousNumUsages + 1);
+        assertTrue(searchLog.getSearchHistory().contains("SearchTestTask"));
+        assertTrue(verifySearchResponse(searchLog.getLogName(), response));
+    }
+
+    @Test
+    @Order(8)
+    @DisplayName("General Study Objective Test")
+    void generalSearchStudyObjectiveTest() {
+        SearchLog searchLog = generalSearch.getSearchLog();
+        int previousNumUsages = searchLog.getNumUsages();
+        List<String> response = generalSearch.search("SearchStudyObjective");
+        assertTrue(verifySearchResponse("GeneralSearchStudyObjective Test", response));
+        assertEquals((int) searchLog.getNumUsages(), previousNumUsages + 1);
+        assertTrue(searchLog.getSearchHistory().contains("SearchStudyObjective"));
+        assertTrue(verifySearchResponse(searchLog.getLogName(), response));
+    }
+
+    @Test
+    @Order(9)
+    @DisplayName("General Study Plan Test")
+    void generalSearchStudyPlanTest() {
+        SearchLog searchLog = generalSearch.getSearchLog();
+        int previousNumUsages = searchLog.getNumUsages();
+        List<String> response = generalSearch.search("SearchStudyPlan");
+        assertTrue(verifySearchResponse("GeneralSearchStudyPlan Test", response));
+        assertEquals((int) searchLog.getNumUsages(), previousNumUsages + 1);
+        assertTrue(searchLog.getSearchHistory().contains("SearchStudyPlan"));
+        assertTrue(verifySearchResponse(searchLog.getLogName(), response));
+    }
+
+    @Test
+    @Order(9)
+    @DisplayName("General Study Goal Test")
+    void generalSearchStudyGoalTest() {
+        SearchLog searchLog = generalSearch.getSearchLog();
+        int previousNumUsages = searchLog.getNumUsages();
+        List<String> response = generalSearch.search("SearchStudyGoal");
+        assertTrue(verifySearchResponse("GeneralSearchStudyGoal Test", response));
+        assertEquals((int) searchLog.getNumUsages(), previousNumUsages + 1);
+        assertTrue(searchLog.getSearchHistory().contains("SearchStudyGoal"));
+        assertTrue(verifySearchResponse(searchLog.getLogName(), response));
+    }
+
+
 }

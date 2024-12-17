@@ -53,7 +53,7 @@ public abstract class Reference {
         this.license = license;
     }
 
-    public boolean isDownloadable() {
+    public boolean getIsDownloadable() {
         return isDownloadable;
     }
 

@@ -16,7 +16,7 @@ class StudyGoalTest {
     void setUp() {
         studyObjective = new StudyObjective("Test Objective", "Test Objective Description");
         studyPlan = new StudyPlan("Test Plan", studyObjective, new ArrayList<>());
-        studyGoal = new StudyGoal(studyObjective, studyPlan);
+        studyGoal = new StudyGoal("Study Goal Test", studyObjective, studyPlan);
         setStudyGoal();
         setStudyPlan();
     }

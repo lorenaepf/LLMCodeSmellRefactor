@@ -10,6 +10,7 @@ public class Task extends Registry{
 
     public Task(String title, String description, String author, LocalDateTime date) {
         this.title = title;
+        this.name = title;
         this.description = description;
         this.author = author;
         this.date = date;

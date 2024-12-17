@@ -14,7 +14,8 @@ public class StudyGoal extends Registry{
     private StudyPlan studyPlan;
     private String summary;
 
-    public StudyGoal(StudyObjective objective, StudyPlan plan) {
+    public StudyGoal(String name, StudyObjective objective, StudyPlan plan) {
+        this.name = name;
         this.studyObjective = objective;
         this.studyPlan = plan;
         goalRequirements = new ArrayList<>();

@@ -4,16 +4,14 @@ import org.example.studymaterial.AudioReference;
 import org.example.studymaterial.TextReference;
 import org.example.studymaterial.VideoReference;
 import org.example.studyregistry.StudyMaterial;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class MaterialSearchTest {
     static MaterialSearch materialSearch = new MaterialSearch();
     static StudyMaterial studyMaterial = StudyMaterial.getStudyMaterial();

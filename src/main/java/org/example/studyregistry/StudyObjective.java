@@ -1,6 +1,7 @@
 package org.example.studyregistry;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class StudyObjective extends Registry{
     private String title;
@@ -11,6 +12,39 @@ public class StudyObjective extends Registry{
     private Double duration;
     private String objectiveInOneLine;
     private String objectiveFullDescription;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public Integer getPracticedDays() {
+        return practicedDays;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public Double getDuration() {
+        return duration;
+    }
+
+    public String getObjectiveInOneLine() {
+        return objectiveInOneLine;
+    }
+
+    public String getObjectiveFullDescription() {
+        return objectiveFullDescription;
+    }
+
+    public String getMotivation() {
+        return motivation;
+    }
+
     private String motivation;
 
     @Override
@@ -23,6 +57,7 @@ public class StudyObjective extends Registry{
     public StudyObjective(String title, String description) {
         this.title = title;
         this.description = description;
+        this.name = title;
     }
 
     public void handleSetRegistry(Integer id, String name, Integer priority, boolean isActive){
@@ -47,13 +82,16 @@ public class StudyObjective extends Registry{
         this.startDate= LocalDateTime.of(year, month, day, 0, 0);
     }
 
-
-
-    public void handleSetObjective(Integer id, String name, Integer priority, boolean isActive, String title, String description, String topic, Integer practicedDays, int day, int month, int year, Double duration, String objectiveInOneLine, String objectiveFullDescription, String motivation){
+    public void handleSetObjective(Integer id, Integer priority, Integer practicedDays, int day, int month, int year, String name, String title, String description, String topic, String objectiveInOneLine, String objectiveFullDescription, String motivation, Double duration, boolean isActive){
         handleSetRegistry(id, name, priority, isActive);
         handleSetTextualInfo(title, description, topic, objectiveInOneLine, objectiveFullDescription, motivation);
         handleSetTime(practicedDays, day, month, year, duration);
+    }
 
+    public int handleSetObjectiveAdapter(List<Integer> intProperties, List<String> stringProperties, Double duration, boolean isActive){
+        handleSetObjective(intProperties.get(0), intProperties.get(1), intProperties.get(2), intProperties.get(3), intProperties.get(4), intProperties.get(5),
+                stringProperties.get(0), stringProperties.get(1), stringProperties.get(2), stringProperties.get(3), stringProperties.get(4), stringProperties.get(5), stringProperties.get(6), duration, isActive);
+        return intProperties.get(0);
     }
 
     public String getDescription() {

@@ -56,10 +56,10 @@ class KanbanViewTest {
     @Order(3)
     void addHabitDontExistToKanban() {
         try {
-            kanbanView.addHabitToKanban(KanbanView.State.TODO, 1);
+            kanbanView.addHabitToKanban(KanbanView.State.TODO, -1);
         } catch (Exception e){
             assertNotNull(e);
-            assertEquals("Habit not found with id: " + 1, e.getMessage());
+            assertEquals("Habit not found with id: " + -1, e.getMessage());
         }
     }
 
@@ -68,10 +68,10 @@ class KanbanViewTest {
     @Order(3)
     void addToDoDontExistToKanban() {
         try {
-            kanbanView.addToDoToKanban(KanbanView.State.TODO, 1);
+            kanbanView.addToDoToKanban(KanbanView.State.TODO, -1);
         } catch (Exception e){
             assertNotNull(e);
-            assertEquals("ToDo not found with id: " + 1, e.getMessage());
+            assertEquals("ToDo not found with id: " + -1, e.getMessage());
         }
     }
 
@@ -80,9 +80,9 @@ class KanbanViewTest {
     @Order(4)
     void addHabitToKanban() {
         try {
-            habitTracker.addHabit("Habit 1", "Habit Motivation 1", 1, 2, 3, 4, 5, 6, 7, 8, true);
-            Habit habit = habitTracker.getHabitById(1);
-            kanbanView.addHabitToKanban(KanbanView.State.TODO, 1);
+            int id = habitTracker.addHabit("Habit 1", "Habit Motivation 1");
+            Habit habit = habitTracker.getHabitById(id);
+            kanbanView.addHabitToKanban(KanbanView.State.TODO, id);
             List<PlannerMaterial> materials = kanbanView.getKanbanByState(KanbanView.State.TODO);
             assertTrue(materials.contains(habit));
         } catch (Exception e){
@@ -95,9 +95,9 @@ class KanbanViewTest {
     @Order(5)
     void addToDoToKanban() {
         try {
-            todoTracker.addToDo("Test Title 1", "Test Description 1", 1);
-            ToDo todo = todoTracker.getToDoById(1);
-            kanbanView.addToDoToKanban(KanbanView.State.TODO, 1);
+            int id = todoTracker.addToDo("Test Title 1", "Test Description 1", 1);
+            ToDo todo = todoTracker.getToDoById(id);
+            kanbanView.addToDoToKanban(KanbanView.State.TODO, id);
             List<PlannerMaterial> materials = kanbanView.getKanbanByState(KanbanView.State.TODO);
             assertTrue(materials.contains(todo));
         } catch (Exception e){

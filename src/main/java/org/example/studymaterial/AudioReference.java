@@ -1,5 +1,7 @@
 package org.example.studymaterial;
 
+import java.util.List;
+
 public class AudioReference extends Reference {
     public enum AudioQuality {
         LOW, MEDIUM, HIGH, VERY_HIGH;
@@ -18,20 +20,22 @@ public class AudioReference extends Reference {
         this.audioQuality = audioQuality;
     }
 
-     public void editAudio(AudioQuality audioQuality, String title, String description, String link, String accessRights, String license, boolean isDownloadable, int rating, String language, int viewCount, int shareCount, AudioQuality quality){
+     private void editAudio(AudioQuality audioQuality, boolean isDownloadable, String title, String description, String link, String accessRights, String license, String language, int rating,  int viewCount, int shareCount){
         editBasic(title, description, link);
         this.setAccessRights(accessRights);
         this.setLicense(license);
         this.setAudioQuality(audioQuality);
-        editVideoAttributes(rating, language, viewCount, shareCount, isDownloadable, quality);
-
+        editVideoAttributes(rating, language, viewCount, shareCount, isDownloadable);
      }
 
-     private void editVideoAttributes(int rating, String language, int viewCount, int shareCount,boolean isDownloadable, AudioQuality quality){
+     public void editAudioAdapter(List<String> properties, List<Integer> intProperties, AudioQuality audioQuality, boolean isDownloadable){
+         this.editAudio(audioQuality, isDownloadable, properties.get(0), properties.get(1), properties.get(2), properties.get(3), properties.get(4), properties.get(5), intProperties.get(0),  intProperties.get(1), intProperties.get(2));
+     }
+
+     private void editVideoAttributes(int rating, String language, int viewCount, int shareCount,boolean isDownloadable){
          this.setRating(rating);
          this.setShareCount(shareCount);
          this.setViewCount(viewCount);
-         this.setAudioQuality(quality);
          this.setDownloadable(isDownloadable);
          this.setLanguage(language);
      }
