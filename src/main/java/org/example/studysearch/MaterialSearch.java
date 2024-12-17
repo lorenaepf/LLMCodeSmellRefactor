@@ -6,14 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MaterialSearch implements Search<String>{
+
+
     private SearchLog searchLog = new SearchLog("Material Search");
 
     public MaterialSearch() {}
 
     @Override
     public List<String> search(String text) {
-        List<String> response = handleMaterialSearch(text);
-        return response;
+        return handleMaterialSearch(text);
+    }
+
+    public SearchLog getSearchLog() {
+        return searchLog;
     }
 
     private List<String> handleMaterialSearch(String text){
@@ -21,7 +26,7 @@ public class MaterialSearch implements Search<String>{
         results.addAll(StudyMaterial.getStudyMaterial().searchInMaterials(text));
         this.searchLog.addSearchHistory(text);
         this.searchLog.setNumUsages(this.searchLog.getNumUsages() + 1);
-        results.add("Logged in: " + this.searchLog.getLogName());
+        results.add("\nLogged in: " + this.searchLog.getLogName());
         return results;
     }
 

@@ -16,11 +16,21 @@ public class AudioReference extends Reference {
         return audioQuality;
     }
 
+    public static AudioQuality audioQualityAdapter(String quality){
+        return switch (quality.toLowerCase()) {
+            case "low" -> AudioQuality.LOW;
+            case "medium" -> AudioQuality.MEDIUM;
+            case "high" -> AudioQuality.HIGH;
+            case "very_high" -> AudioQuality.VERY_HIGH;
+            default -> null;
+        };
+    }
+
     public void setAudioQuality(AudioQuality audioQuality) {
         this.audioQuality = audioQuality;
     }
 
-     private void editAudio(AudioQuality audioQuality, boolean isDownloadable, String title, String description, String link, String accessRights, String license, String language, int rating,  int viewCount, int shareCount){
+     public void editAudio(AudioQuality audioQuality, boolean isDownloadable, String title, String description, String link, String accessRights, String license, String language, int rating,  int viewCount, int shareCount){
         editBasic(title, description, link);
         this.setAccessRights(accessRights);
         this.setLicense(license);

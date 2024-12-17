@@ -10,7 +10,7 @@ public class StudyTaskManager {
     private static StudyTaskManager instance;
     private StudyMaterial studyMaterial = StudyMaterial.getStudyMaterial();
     List<Registry> registryList;
-    List<String> weekResponsibilities;
+    List<String> weekResponsibilities = List.of();
 
     private StudyTaskManager(){
         this.registryList = new ArrayList<Registry>();

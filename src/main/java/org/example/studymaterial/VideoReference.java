@@ -11,11 +11,13 @@ public class VideoReference extends Reference {
         this.setDescription(description);
     }
 
-    public VideoReference(boolean isAvailable, String resolution, String frameRate, String videoFormat, String accessRights){
+    public VideoReference(boolean isAvailable, String title, String description, String resolution, String frameRate, String videoFormat, String accessRights){
         this.isAvailable = isAvailable;
         this.resolution = resolution;
         this.frameRate = frameRate;
         this.videoFormat = videoFormat;
+        this.setTitle(title);
+        this.setDescription(description);
         this.setAccessRights(accessRights);
     }
 

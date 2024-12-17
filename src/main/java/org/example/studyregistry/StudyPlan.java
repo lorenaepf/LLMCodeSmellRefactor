@@ -16,13 +16,17 @@ public class StudyPlan extends Registry{
         this.steps = new ArrayList<>();
     }
 
+    @Override
+    public String toString(){
+        return "Plan: " + name + ",\nObjective: " + objective.getDescription() + ",\nSteps: " + String.join(", ", steps);
+    }
+
     public List<String> getSteps() {
         return steps;
     }
 
-    @Override
-    public String toString(){
-        return "Plan: " + name + ",\nObjective: " + objective.getDescription() + ",\nSteps: " + String.join(", ", steps);
+    public StudyObjective getObjective() {
+        return objective;
     }
 
     public void assignObjective(StudyObjective objective) {

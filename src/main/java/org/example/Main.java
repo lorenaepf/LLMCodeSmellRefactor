@@ -1,21 +1,20 @@
 package org.example;
 
-import org.example.controllers.MainController;
-import org.example.controllers.StudyCardsController;
-import org.example.controllers.StudyPlannerController;
+import org.example.controllers.*;
 
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-
+    static StudyCardsController studyCardsController = new StudyCardsController();
+    static StudyPlannerController studyPlannerController = new StudyPlannerController();
+    static StudyRegistryController studyRegistryController = new StudyRegistryController();
+    static StudySearchController studySearchController = new StudySearchController();
+    static MainController controller = new MainController(studyCardsController, studyPlannerController,
+            studyRegistryController, studySearchController);
 
     public static void main(String[] args) {
-        StudyCardsController studyCardsController = new StudyCardsController();
-        StudyPlannerController studyPlannerController = new StudyPlannerController();
-        MainController controller = new MainController(studyCardsController, studyPlannerController);
-
         Scanner userInput = new Scanner(System.in);
         String input = "";
 
@@ -34,7 +33,7 @@ public class Main {
                 1 - study cards
                 2 - study planner
                 3 - study registry
-                
+                4 - study search
                 """;
     }
 }

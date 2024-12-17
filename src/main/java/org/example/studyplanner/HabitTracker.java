@@ -25,6 +25,15 @@ public class HabitTracker {
         this.nextId = 1;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder response = new StringBuilder();
+        for (Habit habit : habits) {
+            response.append(habit.toString()).append(", ");
+        }
+        return "Habits: " + response.toString();
+    }
+
     public Habit getHabitById(Integer id){
         return this.habits.stream()
                 .filter(habit -> Objects.equals(habit.getId(), id))

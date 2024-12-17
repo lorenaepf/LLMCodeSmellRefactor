@@ -17,6 +17,10 @@ public class RegistrySearch implements Search<String>{
         return handleRegistrySearch(text);
     }
 
+    public SearchLog getSearchLog() {
+        return searchLog;
+    }
+
     private List<String> handleRegistrySearch(String text){
         List<String> results = new ArrayList<>();
         results.addAll(CardManager.getCardManager().searchInCards(text));
@@ -25,7 +29,7 @@ public class RegistrySearch implements Search<String>{
         results.addAll(StudyTaskManager.getStudyTaskManager().searchInRegistries(text));
         this.searchLog.addSearchHistory(text);
         this.searchLog.setNumUsages(this.searchLog.getNumUsages() + 1);
-        results.add("Logged in: " + this.searchLog.getLogName());
+        results.add("\nLogged in: " + this.searchLog.getLogName());
         return results;
     }
 }

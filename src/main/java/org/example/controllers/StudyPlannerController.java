@@ -1,8 +1,6 @@
 package org.example.controllers;
 
-import org.example.studyplanner.HabitTracker;
-import org.example.studyplanner.ToDo;
-import org.example.studyplanner.TodoTracker;
+import org.example.studyplanner.*;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -15,16 +13,20 @@ public class StudyPlannerController {
     private Map<String, Runnable> actions = new HashMap<>();
     private static TodoTracker todoTracker = TodoTracker.getInstance();
     private static HabitTracker habitTracker = HabitTracker.getHabitTracker();
+    private static KanbanView kanbanView = new KanbanView(habitTracker, todoTracker);
+    private static TimelineView timelineView = new TimelineView();
 
     public StudyPlannerController() {
         handlePlannerOptions();
         handleTodoMenuOptions();
         handleHabitMenuOptions();
+        handleViewMenuOptions();
     }
 
     private void handlePlannerOptions(){
         actions.put("1", this::handleTodoInput);
         actions.put("2", this::handleHabitInput);
+        actions.put("3", this::handleViewInput);
     }
 
     private void handleTodoMenuOptions(){
@@ -37,8 +39,26 @@ public class StudyPlannerController {
 
     private void handleHabitMenuOptions(){
         actions.put("21", this::handleAddHabit);
-        actions.put("22", this::handleRemoveTodo);
-        actions.put("23", this::handleViewTodo);
+        actions.put("22", this::handleRemoveHabit);
+        actions.put("23", this::handleViewHabits);
+    }
+
+
+    private void handleViewMenuOptions() {
+        actions.put("31", () -> {
+            try {
+                handleViewKanban();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        });
+        actions.put("32", () -> {
+            try {
+                handleViewTimeline();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        });
     }
 
     private String getInput(){
@@ -64,6 +84,12 @@ public class StudyPlannerController {
         System.out.println("Type todo id to remove");
         Integer id = Integer.parseInt(getInput());
         todoTracker.removeToDo(id);
+    }
+
+    public void handleRemoveHabit(){
+        System.out.println("Type habit id to remove");
+        Integer id = Integer.parseInt(getInput());
+        habitTracker.removeHabit(id);
     }
 
     private void handleAddTodo(){
@@ -103,6 +129,16 @@ public class StudyPlannerController {
         System.out.println(todoTracker.toString());
     }
 
+
+    private String viewHabitHeader(){
+        return "Habits found: ";
+    }
+
+    private void handleViewHabits(){
+        System.out.println(viewHabitHeader());
+        System.out.println(habitTracker.toString());
+    }
+
     private void handleTodoInput(){
         try{
             while(true){
@@ -124,6 +160,41 @@ public class StudyPlannerController {
                 if(response == null) {return;}
                 actions.get(response).run();
             }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void handleViewInput(){
+        try{
+            while(true){
+                viewOptions();
+                String response = MainController.validateInput(actions);
+                if(response == null) {return;}
+                actions.get(response).run();
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void handleMethodHeader(String header){
+        System.out.println("---" + header + "---");
+    }
+
+    private void handleViewKanban() throws Exception {
+        try{
+            handleMethodHeader("Kanban view: ");
+            System.out.println(kanbanView.kanbanView());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void handleViewTimeline() throws Exception {
+        try{
+            handleMethodHeader("Timeline view: ");
+            System.out.println(timelineView.habitDateViewAll(habitTracker));
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -168,6 +239,14 @@ public class StudyPlannerController {
                 21 - add habit
                 22 - remove habit
                 23 - view habit
+               """);
+    }
+
+    public static void viewOptions(){
+        System.out.println("""
+                0 - return
+                31 - kanban view
+                32 - timeline view
                """);
     }
 }
