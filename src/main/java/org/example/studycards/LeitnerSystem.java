@@ -41,27 +41,44 @@ public class LeitnerSystem extends StudyMethod{
         return boxes;
     }
 
-    public String getRandomCard(List<Box> otherBoxes){
-        if(otherBoxes == null){
+    public String getRandomCard(List<Box> otherBoxes) {
+        if (otherBoxes == null || otherBoxes.isEmpty()) {
             return null;
         }
-        if(otherBoxes.isEmpty()){
-            return null;
-        }
-        Box allBoxes = new Box();
-        for(Box box : otherBoxes){
-            allBoxes.addCards(box.getCards());
-        }
+
+        Box allBoxes = combineAllBoxes(otherBoxes);
         Integer randomCard = allBoxes.getRandomCard();
-        if(randomCard == null){
-            return "No card found";
-        }
+
+        return (randomCard == null) ? "No card found" : buildCardResponse(randomCard);
+    }
+
+    private String buildCardResponse(Integer randomCard) {
         CardManager manager = CardManager.getCardManager();
         Card card = manager.getCard(randomCard);
-        String response = "["+ randomCard + "] ";
+
+        String response = "[" + randomCard + "] ";
         response += "The random question was: " + card.getQuestion() + " | ";
         response += "The answer is: " + card.getAnswer();
-        return  response;
+
+        return response;
+    }
+
+    private String buildSystemOverview() {
+        StringBuilder response = new StringBuilder();
+        int index = 0;
+        for (Box box : boxes) {
+            response.append("Box ").append(index).append(": ").append(box.toString()).append("\n");
+            index++;
+        }
+        return response.toString();
+    }
+
+    private Box combineAllBoxes(List<Box> otherBoxes) {
+        Box combinedBox = new Box();
+        for (Box box : otherBoxes) {
+            combinedBox.addCards(box.getCards());
+        }
+        return combinedBox;
     }
 
     public void addCardToBox(Integer id, Integer boxId) {
