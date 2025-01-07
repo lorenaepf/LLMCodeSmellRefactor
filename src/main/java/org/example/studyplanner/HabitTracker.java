@@ -19,6 +19,22 @@ public class HabitTracker {
         return instance;
     }
 
+    public String generateHabitView() {
+        StringBuilder response = new StringBuilder();
+        for (Habit habit : this.getHabits()) {
+            response.append("[ Habit: ")
+                    .append(habit.getName())
+                    .append(". Records: ");
+            List<LocalDateTime> records = this.getHabitRecords(habit.getId());
+            for (LocalDateTime record : records) {
+                response.append(this.formatHabitDate(record)).append(", ");
+            }
+            response.append("]");
+        }
+        return response.toString();
+    }
+
+
     private HabitTracker(){
         this.habits = new ArrayList<>();
         this.tracker = new HashMap<>();
