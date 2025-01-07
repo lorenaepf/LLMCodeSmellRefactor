@@ -19,6 +19,11 @@ public class HabitTracker {
         return instance;
     }
 
+    public List<String> handleSearch(String text) {
+        return searchInHabits(text);
+    }
+
+
     public String generateHabitView() {
         StringBuilder response = new StringBuilder();
         for (Habit habit : this.getHabits()) {

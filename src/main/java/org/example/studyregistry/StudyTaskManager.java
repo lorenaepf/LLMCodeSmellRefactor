@@ -23,6 +23,11 @@ public class StudyTaskManager {
         return instance;
     }
 
+    public List<String> handleSearch(String text) {
+        return searchInRegistries(text);
+    }
+
+
     public List<String> getWeekResponsibilities() {
         return weekResponsibilities;
     }

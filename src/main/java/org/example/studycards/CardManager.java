@@ -22,6 +22,11 @@ public class CardManager {
         return instance;
     }
 
+    public List<String> handleSearch(String text) {
+        return searchInCards(text);
+    }
+
+
     public String formatCard(Integer id) {
         Card card = this.getCard(id);
         return "[id: " + id + "] " + "Question: " + card.getQuestion() + " Answer: " + card.getAnswer();

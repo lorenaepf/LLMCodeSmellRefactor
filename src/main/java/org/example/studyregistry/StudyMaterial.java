@@ -25,6 +25,11 @@ public class StudyMaterial{
         return studyMaterial;
     }
 
+    public List<String> handleSearch(String text) {
+        return searchInMaterials(text);
+    }
+
+
     public void addReference(Reference ref){
         references.add(ref);
     }

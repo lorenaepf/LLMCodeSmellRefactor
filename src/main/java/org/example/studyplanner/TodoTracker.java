@@ -62,6 +62,10 @@ public class TodoTracker {
         }
     }
 
+    public List<String> handleSearch(String text) {
+        return searchInTodos(text);
+    }
+
 
     public void addToDoExecutionTime(Integer id){
         List<LocalDateTime> et = tracker.computeIfAbsent(id, k -> new ArrayList<>());
