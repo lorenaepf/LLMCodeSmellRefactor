@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SearchLog {
+
     public String logSearchAndReturnMessage(String text) {
         this.addSearchHistory(text);
         this.setNumUsages(this.getNumUsages() + 1);
