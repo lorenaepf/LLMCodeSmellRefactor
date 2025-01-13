@@ -74,38 +74,44 @@ public class KanbanView {
         }
     }
 
-    public String kanbanView() throws Exception {
-        try {
-            if (kanban.isEmpty()) {
-                throw new Exception("No material found");
-            }
-
-            StringBuilder sb = new StringBuilder();
-            appendStateMaterials(sb, State.TODO, "Material ToDo");
-            appendStateMaterials(sb, State.DOING, "Material in progress");
-            appendStateMaterials(sb, State.DONE, "Material completed");
-
-            sb.append("]");
-            return sb.toString();
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
-    }
-
-    private void appendStateMaterials(StringBuilder sb, State state, String header) {
-        sb.append("[ ").append(header).append(": ");
+    private String formatKanbanSection(State state, String sectionTitle) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(sectionTitle);
         sb.append(System.lineSeparator());
 
-        if (kanban.get(state).isEmpty()) {
+        if(kanban.get(state).isEmpty()){
             sb.append("No material found");
         } else {
-            for (PlannerMaterial material : kanban.get(state)) {
+            for(PlannerMaterial material : kanban.get(state)){
                 sb.append(", ").append(material.toString());
             }
         }
-
         sb.append(System.lineSeparator());
+        return sb.toString();
     }
 
+    private String buildKanbanContent() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ Material ToDo: ");
+        sb.append(System.lineSeparator());
+
+        sb.append(formatKanbanSection(State.TODO, ""));
+        sb.append(formatKanbanSection(State.DOING, "Material in progress:"));
+        sb.append(formatKanbanSection(State.DONE, "Material completed:"));
+
+        sb.append("]");
+        return sb.toString();
+    }
+
+    public String kanbanView() throws Exception {
+        try {
+            if(kanban.isEmpty()){
+                throw new Exception("No material found");
+            }
+            return buildKanbanContent();
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 
 }
